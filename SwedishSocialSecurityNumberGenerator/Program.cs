@@ -2,11 +2,12 @@
 
 namespace SwedishSocialSecurityNumberGenerator
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            var socialSecurityNumberGenerator = new SocialSecurityNumberGenerator();
+            Console.WriteLine(socialSecurityNumberGenerator.GenerateSwedishSocialSecurityNumber(10));
         }
     }
 }
