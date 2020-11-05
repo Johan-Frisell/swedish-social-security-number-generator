@@ -7,7 +7,7 @@ namespace SwedishSocialSecurityNumberGenerator
         static void Main()
         {
             var socialSecurityNumberGenerator = new SocialSecurityNumberGenerator();
-            Console.WriteLine(socialSecurityNumberGenerator.GenerateSwedishSocialSecurityNumber(10));
+            Console.WriteLine(socialSecurityNumberGenerator.GenerateSwedishSocialSecurityNumber(100));
         }
     }
 }

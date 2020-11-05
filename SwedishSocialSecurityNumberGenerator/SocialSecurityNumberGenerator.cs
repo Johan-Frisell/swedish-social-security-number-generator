@@ -30,9 +30,15 @@ namespace SwedishSocialSecurityNumberGenerator
             ssnDigitsWithoutChecksum[7] = county % 10;                  // YYMMDDN|N|NN
             ssnDigitsWithoutChecksum[8] = gender;                       // YYMMDDNN|N|N
 
-            int checksumValue = CalculateChecksumValue(ssnDigitsWithoutChecksum);
+            var ssn = new int[12];
+            ssn[0] = year / 1000;
+            ssn[1] = year / 100 % 10;
 
-            return string.Join(string.Empty, ssnDigitsWithoutChecksum.Append(checksumValue));
+            int checksumValue = CalculateChecksumValue(ssnDigitsWithoutChecksum);
+            Array.Copy(ssnDigitsWithoutChecksum, 0, ssn, 2, ssnDigitsWithoutChecksum.Length);
+            ssn[11] = checksumValue;
+
+            return string.Join(string.Empty, ssn);
         }
 
         public bool ValidateSwedishSocialSecurityNumber(string ssn)
@@ -65,7 +71,6 @@ namespace SwedishSocialSecurityNumberGenerator
                     totalChecksumValue += sum;
                 }
             }
-
             var totalChecksumValueDigit = totalChecksumValue % 10 == 0 ? 10 : totalChecksumValue % 10;
             var checksum = 10 - totalChecksumValueDigit;
 
